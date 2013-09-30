@@ -1,4 +1,4 @@
-SinDudo
-=======
+Sin Dudo
+========
 
-Probability plotting app for Liars Dice 
+Probability plotting app for Liar's Dice 

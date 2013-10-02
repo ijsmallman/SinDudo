@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/zero"
+            android:text="0"
             android:textColor="@color/blue"
             android:textStyle="bold" />
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/six"
+            android:text="6"
             android:textColor="@color/blue"
             android:textStyle="bold" />
 
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/twelve"
+            android:text="12"
             android:textColor="@color/blue"
             android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/eighteen"
+            android:text="18"
             android:textColor="@color/blue"
             android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/twentyfour"
+            android:text="24"
             android:textColor="@color/blue"
             android:textStyle="bold" />
 
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/thirty"
+            android:text="30"
             android:textColor="@color/blue"
             android:textStyle="bold" />
 
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="@string/thirtysix"
+            android:text="36"
             android:textColor="@color/blue"
             android:textStyle="bold" />
     </LinearLayout>

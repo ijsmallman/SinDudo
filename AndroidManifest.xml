@@ -24,6 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:label="@string/info_label"
+            android:name="com.SmallJoeMan.sindudo.InfoActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -3,7 +3,10 @@ package com.SmallJoeMan.sindudo;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.SeekBar;
@@ -60,6 +63,24 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
-	}	
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected( MenuItem item )
+	{
+	    boolean ret;
+	    final Context context = this;
+	    if (item.getItemId() == R.id.action_info)
+	    {
+	    	Intent intent = new Intent(context, InfoActivity.class);
+            startActivity(intent);
+	        ret = true;
+	    } 
+	    else
+	    {
+	        ret = super.onOptionsItemSelected( item );
+	    }
+	    return ret;
+	}
 
 }

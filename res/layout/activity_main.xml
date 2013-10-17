@@ -9,13 +9,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <WebView
-        android:id="@+id/webView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/diceCount"
-        android:layout_alignLeft="@+id/vals" />
-    
+    <LinearLayout
+        android:id="@+id/chart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:layout_above="@+id/diceCount">
+    </LinearLayout>
+            
     <TextView
         android:id="@+id/diceCount"
         android:layout_width="wrap_content"
@@ -35,8 +36,8 @@
         android:layout_above="@+id/vals"
         android:layout_alignLeft="@+id/vals"
         android:layout_alignRight="@+id/vals"
-        android:max="36"
-        android:progress="30"  />
+        android:max="35"
+        android:progress="29"  />
 
     <LinearLayout
         android:id="@+id/vals"
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_horizontal"
-            android:text="0"
+            android:text="1"
             android:textColor="@color/blue"
             android:textStyle="bold" />
 

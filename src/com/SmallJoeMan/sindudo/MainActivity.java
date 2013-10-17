@@ -1,14 +1,14 @@
 package com.SmallJoeMan.sindudo;
 
+import org.achartengine.GraphicalView;
+
 import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -17,9 +17,10 @@ public class MainActivity extends Activity {
 
 	TextView diceCount;
 	SeekBar diceSlider;
-	WebView webview;
+	GraphicalView gView;
+	LineGraph lineGraph;
+	LinearLayout layout;
 	
-	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,24 +28,22 @@ public class MainActivity extends Activity {
 		
 		diceCount = (TextView) findViewById(R.id.diceCount);
 		diceSlider = (SeekBar) findViewById(R.id.seekBar);
-		
+		lineGraph = new LineGraph(getDiceProbabilities(diceSlider.getProgress()+1)); //+1 because of bar shift (see change listener)
+		gView = (GraphicalView) lineGraph.getView(this);
+		layout = (LinearLayout) findViewById(R.id.chart);
+		layout.addView(gView);
 		diceCount.setText(getString(R.string.dice_count) + "30");
-		
-		webview = (WebView) findViewById(R.id.webView1);
-		WebSettings webSettings = webview.getSettings();
-		webSettings.setJavaScriptEnabled(true);
-		webview.requestFocusFromTouch();
-		webview.loadUrl("file:///android_asset/webCode.html"); // Can be used in this way too.
-		
+
 		diceSlider.setOnSeekBarChangeListener( new OnSeekBarChangeListener()
 		{
 			int progressChanged = 0;
 			
-			
 			public void onProgressChanged(SeekBar diceSlider, int progress, boolean fromUser)
 			{
-				progressChanged = progress;
-				diceCount.setText(getString(R.string.dice_count) + Integer.toString(progress));
+				progressChanged = progress+1; // add 1 so bar goes from 1-36 rather than 0-35
+				diceCount.setText(getString(R.string.dice_count) + Integer.toString(progressChanged));
+				lineGraph.setDataset(getDiceProbabilities(progressChanged));
+				gView.repaint();
 			}
 			public void onStartTrackingTouch(SeekBar diceSlider)
 			{
@@ -52,7 +51,7 @@ public class MainActivity extends Activity {
 			}
 			public void onStopTrackingTouch(SeekBar diceSlider)
 			{
-				webview.loadUrl("javascript:drawChart(\""+Integer.toString(progressChanged)+"\")");
+				// TODO Auto-generated method stub	
 			}
 		});
 		
@@ -81,6 +80,15 @@ public class MainActivity extends Activity {
 	        ret = super.onOptionsItemSelected( item );
 	    }
 	    return ret;
+	}
+	
+	public double[] getDiceProbabilities(int diceCount)
+	{
+		double[] pVals = new double[diceCount+1];
+		for (int i = 0; i < diceCount+1; i++) {
+            pVals[i] = DiceProbabilities.diceProb(diceCount, i);
+        }
+		return pVals;
 	}
 
 }

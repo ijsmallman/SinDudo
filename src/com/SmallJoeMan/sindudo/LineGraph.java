@@ -8,12 +8,13 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 
 public class LineGraph {
 	
-	
+	private Context appContext;
 	private GraphicalView view;
 	private TimeSeries series = new TimeSeries("probabilities");
 	private XYMultipleSeriesRenderer mRenderer;
@@ -23,11 +24,28 @@ public class LineGraph {
 	public LineGraph()
 	{
 		mRenderer = new XYMultipleSeriesRenderer();
-		renderer = new XYSeriesRenderer();	
-		
+		renderer = new XYSeriesRenderer();	   
+	    mRenderer.addSeriesRenderer(renderer);
+	    
+	    dataset = new XYMultipleSeriesDataset();
+		dataset.addSeries(series);
+	}
+	
+	public LineGraph(Context context, double[] yVals)
+	{
+		this();
+		appContext = context;
+		formatRenderers();
+		setDataset(yVals);
+	}
+	
+	public void formatRenderers()
+	{
 		renderer.setPointStyle(PointStyle.CIRCLE);
+		renderer.setFillPoints(true);
+		renderer.setColor(Color.argb(255, 0, 99, 212));
 		mRenderer.setApplyBackgroundColor(true);
-		mRenderer.setMarginsColor(Color.argb(0x00, 0x01, 0x01, 0x01));
+		mRenderer.setMarginsColor(Color.argb(0x01, 0x01, 0x01, 0x01));
 		mRenderer.setBackgroundColor(Color.TRANSPARENT);
 		mRenderer.setAxisTitleTextSize(25); // 16
 	    mRenderer.setChartTitleTextSize(25); // 20
@@ -43,19 +61,12 @@ public class LineGraph {
 	    mRenderer.setPanEnabled(false,false);
 	    mRenderer.setYAxisMin(0.0);
 	    mRenderer.setYAxisMax(1.0);
-	    mRenderer.setXTitle("minimum number of dice");
-	    mRenderer.setYTitle("probability");
-	    
-	    mRenderer.addSeriesRenderer(renderer);
-	    
-	    dataset = new XYMultipleSeriesDataset();
-		dataset.addSeries(series);
-	}
-	
-	public LineGraph(double[] yVals)
-	{
-		this();
-		setDataset(yVals);		
+	    mRenderer.setXTitle(appContext.getString(R.string.xTitle));
+	    mRenderer.setYTitle(appContext.getString(R.string.yTitle));
+	    mRenderer.setXLabelsColor(Color.BLACK);
+	    mRenderer.setYLabelsColor(0, Color.BLACK);
+	    mRenderer.setLabelsColor(Color.BLACK);
+	    mRenderer.setAxesColor(Color.BLACK);
 	}
 	
 	public void setDataset( double[] yVals )
@@ -77,10 +88,10 @@ public class LineGraph {
 		}	
 	}
 	
-	public GraphicalView getView(Context context)
+	public GraphicalView getView()
 	{			
 		// return GraphView
-		view = ChartFactory.getLineChartView(context, dataset, mRenderer);
+		view = ChartFactory.getLineChartView(appContext, dataset, mRenderer);
 		return view;
 	}
 }

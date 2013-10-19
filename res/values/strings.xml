@@ -3,8 +3,25 @@
     <string name="app_name">Sin Dudo</string>
     <string name="action_info">Info</string>
     <string name="info_label">Info</string>
-    <string name="info_text">The quick brown fox jumped over the lazy dog.</string>
+    <string name="info_intro_text">
+        Liar\'s Dice is a game where you bet on the minimum number of dice of a certain value.
+        \n\nEach player has a cup containing at most 6 dice.
+        \n\nEach player upturns their cup onto the table and peaks at the values of their own rolled dice.
+        \n\nBetting then commences. Full details on the rules can be found at <a>http://en.wikipedia.org/wiki/Liar\'s_dice</a>.
+        </string>
+   <string name="info_usage_text">
+        Set the value of the slider to the number of dice that are not visible to you on the table.
+        \n\nThe graph plots out the probabilities that there will be at least m dice of a given face value in addition to those under your own cup.
+        \n\nm can be any number up to the total number of dice that are not visible to you.
+        \n\nNote that the probabilities drop of very rapidly.
+        \n\nIt is worth baring in mind that you expect one sixth of the unseen dice to have a given face value.
+        \n\nThe probability of at least this number of dice is always just over 50%. 
+        </string>
 	<color name="white">#FFFFFF</color>
-	<color name="blue">#003F87</color>
+	<color name="blue">#0066cc</color>
+	<color name="darkBlue">#000066</color>
+	<color name="black">#000000</color>
 	<string name="dice_count">Number of dice:\u0020</string>
+	<string name="xTitle">minimum number of dice</string>
+	<string name="yTitle">probability</string>
 </resources>

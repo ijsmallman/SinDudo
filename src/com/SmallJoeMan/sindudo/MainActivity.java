@@ -28,8 +28,8 @@ public class MainActivity extends Activity {
 		
 		diceCount = (TextView) findViewById(R.id.diceCount);
 		diceSlider = (SeekBar) findViewById(R.id.seekBar);
-		lineGraph = new LineGraph(getDiceProbabilities(diceSlider.getProgress()+1)); //+1 because of bar shift (see change listener)
-		gView = (GraphicalView) lineGraph.getView(this);
+		lineGraph = new LineGraph(this, getDiceProbabilities(diceSlider.getProgress()+1)); //+1 because of bar shift (see change listener)
+		gView = (GraphicalView) lineGraph.getView();
 		layout = (LinearLayout) findViewById(R.id.chart);
 		layout.addView(gView);
 		diceCount.setText(getString(R.string.dice_count) + "30");
